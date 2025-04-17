@@ -1,4 +1,4 @@
-import { Form } from "./Form";
+import { FormProject } from "./Proyects/FormProject";
 
 type ModalFormProps = {
   idModal: string;
@@ -29,7 +29,7 @@ const ModalForm = ({ idModal }: ModalFormProps) => {
                 Nuevo Proyecto
               </h1>
             </div>
-            <Form />
+            <FormProject />
           </div>
         </div>
       </div>

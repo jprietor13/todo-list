@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
-import { Projects } from "../components/Projects";
+import { Projects } from "../components/Proyects/Projects";
 import { Task } from "../components/Task";
 import { Footer } from "../components/Footer";
 

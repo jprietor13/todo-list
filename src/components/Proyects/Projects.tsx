@@ -1,4 +1,4 @@
-import ModalForm from "./ModalForm";
+import ModalForm from "../ModalForm";
 import ProjectList from "./ProjectList";
 
 export const Projects = () => {

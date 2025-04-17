@@ -1,4 +1,4 @@
-import { useProject } from "../hooks/useProject";
+import { useProject } from "../../hooks/useProject";
 
 const ProjectList = () => {
   const { projects, handleDelete, handleEdit, edit, setEdit, refTitle } =
