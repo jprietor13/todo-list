@@ -3,9 +3,9 @@ import RouteApp from "./routes/RouteApp";
 
 function App() {
   return (
-    <div className="layout">
+    <main className="layout">
       <RouteApp />
-    </div>
+    </main>
   );
 }
 
