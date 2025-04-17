@@ -1,7 +1,8 @@
 import { useProject } from "../hooks/useProject";
 
 const ProjectList = () => {
-  const { projects, handleDelete, handleEdit } = useProject();
+  const { projects, handleDelete, handleEdit, edit, setEdit, refTitle } =
+    useProject();
 
   return (
     <>
@@ -26,12 +27,27 @@ const ProjectList = () => {
                     aria-expanded={isFirst ? "true" : "false"}
                     aria-controls={collapseId}
                   >
-                    {project.title}
+                    {edit !== project.id && project.title}
                   </button>
-                  <input type="text" />
-                  <button onClick={(e) => handleEdit(e, project.id)}>
-                    Editar
-                  </button>
+                  {edit === project.id && (
+                    <div>
+                      <input
+                        type="text"
+                        defaultValue={project.title}
+                        ref={refTitle}
+                      />
+                      <button
+                        onClick={() => {
+                          handleEdit(project.id);
+                          setEdit(0);
+                        }}
+                      >
+                        Editar
+                      </button>
+                      <button onClick={() => setEdit(0)}>Cancelar</button>
+                    </div>
+                  )}
+                  <button onClick={() => setEdit(project.id)}>Editar</button>
                   <button onClick={() => handleDelete(project.id)}>
                     Eliminar
                   </button>

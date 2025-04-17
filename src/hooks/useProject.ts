@@ -8,13 +8,14 @@ const initialData = () => {
 
 export const useProject = () => {
   const [projects, dispatch] = useReducer(projectsReducer, [], initialData);
+  const [edit, setEdit] = useState<number>(0);
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
   }, [projects]);
+  console.log("🚀 ~ useProject ~ projects:", projects);
 
   const refTitle = useRef("");
-  const refDescription = useRef("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +23,6 @@ export const useProject = () => {
     const project = {
       id: new Date().getTime(),
       title: refTitle.current.value,
-      description: refDescription.current.value,
     };
 
     const action = {
@@ -33,5 +33,38 @@ export const useProject = () => {
     dispatch(action);
   };
 
-  return { refTitle, refDescription, handleSubmit, projects };
+  const handleEdit = (id) => {
+    const value = refTitle.current.value;
+
+    const editProject = {
+      id,
+      title: value,
+    };
+
+    const action = {
+      type: "EDIT_PROJECT",
+      payload: editProject,
+    };
+
+    dispatch(action);
+  };
+
+  const handleDelete = (id) => {
+    const action = {
+      type: "DELETE_PROJECT",
+      payload: id,
+    };
+
+    dispatch(action);
+  };
+
+  return {
+    refTitle,
+    handleSubmit,
+    projects,
+    handleEdit,
+    handleDelete,
+    edit,
+    setEdit,
+  };
 };
