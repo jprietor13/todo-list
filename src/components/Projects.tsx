@@ -1,17 +1,19 @@
 import ModalForm from "./ModalForm";
+import ProjectList from "./ProjectList";
 
 export const Projects = () => {
   return (
     <section className="todo-project-container">
-      <div className="empty-text-container">
+      <article className="empty-text-container">
         <h1>
           Aun no tiene proyectos en la lista, para crear un proyecto, de clic
           sobre el boton "Nuevo proyecto +"
         </h1>
-      </div>
-      <div className="new-proyect-container">
+      </article>
+      <article className="new-proyect-container">
         <ModalForm idModal="createProject" />
-      </div>
+        <ProjectList />
+      </article>
     </section>
   );
 };
