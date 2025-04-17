@@ -1,10 +1,10 @@
-import { FormProject } from "./Proyects/FormProject";
-
 type ModalFormProps = {
   idModal: string;
+  children: React.ReactNode;
+  title: string;
 };
 
-const ModalForm = ({ idModal }: ModalFormProps) => {
+const ModalForm = ({ idModal, children, title }: ModalFormProps) => {
   return (
     <>
       <button
@@ -13,7 +13,7 @@ const ModalForm = ({ idModal }: ModalFormProps) => {
         data-bs-toggle="modal"
         data-bs-target={`#${idModal}`}
       >
-        Nuevo proyecto
+        {title}
       </button>
 
       <div
@@ -26,10 +26,10 @@ const ModalForm = ({ idModal }: ModalFormProps) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="modalForm">
-                Nuevo Proyecto
+                {title}
               </h1>
             </div>
-            <FormProject />
+            {children}
           </div>
         </div>
       </div>
