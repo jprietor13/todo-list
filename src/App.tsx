@@ -1,10 +1,11 @@
 import "./App.css";
+import RouteApp from "./routes/RouteApp";
 
 function App() {
   return (
-    <>
-      <h1>Todo list</h1>
-    </>
+    <div className="layout">
+      <RouteApp />
+    </div>
   );
 }
 
