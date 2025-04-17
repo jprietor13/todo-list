@@ -1,7 +1,7 @@
 import { useProject } from "../hooks/useProject";
 
 export const Form = () => {
-  const { refTitle, refDescription, handleSubmit } = useProject();
+  const { refTitle, handleSubmit } = useProject();
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -14,14 +14,6 @@ export const Form = () => {
             ref={refTitle}
           />
         </div>
-        <div className="mb-3">
-          <textarea
-            className="form-control"
-            rows={3}
-            placeholder="Descripción"
-            ref={refDescription}
-          ></textarea>
-        </div>
       </div>
       <div className="modal-footer">
         <button
@@ -31,7 +23,11 @@ export const Form = () => {
         >
           Cancelar
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          data-bs-dismiss="modal"
+        >
           Guardar
         </button>
       </div>
