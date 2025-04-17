@@ -42,7 +42,7 @@ const ProjectList = () => {
                           setEdit(0);
                         }}
                       >
-                        Editar
+                        Guardar
                       </button>
                       <button onClick={() => setEdit(0)}>Cancelar</button>
                     </div>
