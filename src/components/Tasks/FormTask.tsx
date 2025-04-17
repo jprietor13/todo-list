@@ -1,7 +1,14 @@
-import { useProject } from "../../hooks/useProject";
+import { useTask } from "../../hooks/useTask";
 
 export const FormTask = () => {
-  const { refTitle, handleSubmit } = useProject();
+  const {
+    refTitle,
+    refDescription,
+    refExpDate,
+    refStatus,
+    refPriority,
+    handleSubmit,
+  } = useTask();
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -13,6 +20,42 @@ export const FormTask = () => {
             placeholder="Nombre"
             ref={refTitle}
           />
+        </div>
+        <div className="mb-3">
+          <textarea
+            className="form-control"
+            rows={3}
+            placeholder="Descripción"
+            ref={refDescription}
+          ></textarea>
+        </div>
+        <div className="mb-3">
+          <input
+            type="date"
+            name=""
+            id=""
+            className="form-control"
+            ref={refExpDate}
+          />
+        </div>
+        <div className="mb-3">
+          <select className="form-select" aria-label="status" ref={refStatus}>
+            <option selected>Estado</option>
+            <option value="pending">Pendiente</option>
+            <option value="complete">Completado</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            ref={refPriority}
+          >
+            <option selected>Prioridad</option>
+            <option value="high">Alta</option>
+            <option value="medium">Media</option>
+            <option value="low">Baja</option>
+          </select>
         </div>
       </div>
       <div className="modal-footer">

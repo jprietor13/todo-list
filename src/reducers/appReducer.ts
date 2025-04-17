@@ -1,13 +1,13 @@
-export const projectsReducer = (state = [], action: any) => {
+export const todoReducer = (state = [], action: any) => {
   switch (action.type) {
-    case "CREATE_PROJECT":
+    case "CREATE":
       return [...state, action.payload];
 
-    case "DELETE_PROJECT": {
+    case "DELETE": {
       return state.filter((item) => item.id !== action.payload);
     }
 
-    case "EDIT_PROJECT": {
+    case "EDIT": {
       const index = state.findIndex(
         (project) => project.id === action.payload.id
       );

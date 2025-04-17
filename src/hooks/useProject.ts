@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from "react";
-import { projectsReducer } from "../reducers/appReducer";
+import { todoReducer } from "../reducers/appReducer";
 
 const initialData = () => {
   const projects = localStorage.getItem("projects");
@@ -7,13 +7,12 @@ const initialData = () => {
 };
 
 export const useProject = () => {
-  const [projects, dispatch] = useReducer(projectsReducer, [], initialData);
+  const [projects, dispatch] = useReducer(todoReducer, [], initialData);
   const [edit, setEdit] = useState<number>(0);
 
   useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects));
   }, [projects]);
-  console.log("🚀 ~ useProject ~ projects:", projects);
 
   const refTitle = useRef("");
 
@@ -26,7 +25,7 @@ export const useProject = () => {
     };
 
     const action = {
-      type: "CREATE_PROJECT",
+      type: "CREATE",
       payload: project,
     };
 
@@ -42,7 +41,7 @@ export const useProject = () => {
     };
 
     const action = {
-      type: "EDIT_PROJECT",
+      type: "EDIT",
       payload: editProject,
     };
 
@@ -51,7 +50,7 @@ export const useProject = () => {
 
   const handleDelete = (id) => {
     const action = {
-      type: "DELETE_PROJECT",
+      type: "DELETE",
       payload: id,
     };
 
