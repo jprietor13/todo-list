@@ -1,3 +1,3 @@
 export const Task = () => {
-  return <div>Task</div>;
+  return <div className="todo-project-container">Task</div>;
 };

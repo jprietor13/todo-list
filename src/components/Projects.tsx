@@ -1,3 +1,3 @@
 export const Projects = () => {
-  return <div>Projects</div>;
+  return <div className="todo-project-container">Projects</div>;
 };
