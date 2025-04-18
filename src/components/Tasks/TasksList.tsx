@@ -1,4 +1,4 @@
-import { useTask } from "../../hooks/useTask";
+import { useTask } from "../../context/TaskContext";
 import { useProject } from "../../context/ProjectContext";
 import FilterAndOrderTasks from "./FilterAndOrderTasks";
 
@@ -16,11 +16,9 @@ interface TasksListProps {
 
 const TasksList = ({ tasks }: TasksListProps) => {
   const {
-    refTitle,
-    refDescription,
-    refExpDate,
-    refStatus,
-    refPriority,
+    form,
+    setForm,
+    handleChange,
     handleEdit,
     handleDelete,
     edit,
@@ -72,30 +70,33 @@ const TasksList = ({ tasks }: TasksListProps) => {
                   <td>
                     <input
                       type="text"
-                      defaultValue={task.title}
-                      ref={refTitle}
+                      name="title"
+                      value={form.title}
+                      onChange={handleChange}
                     />
                   </td>
                   <td>
                     <textarea
-                      defaultValue={task.description}
-                      ref={refDescription}
+                      name="description"
+                      value={form.description}
+                      onChange={handleChange}
                       rows={3}
                     ></textarea>
                   </td>
                   <td>
                     <input
                       type="date"
-                      defaultValue={task.expDate}
-                      ref={refExpDate}
+                      name="expDate"
+                      value={form.expDate}
+                      onChange={handleChange}
                     />
                   </td>
                   <td>
                     <select
                       className="form-select"
-                      defaultValue={task.status}
-                      aria-label="status"
-                      ref={refStatus}
+                      name="status"
+                      value={form.status}
+                      onChange={handleChange}
                     >
                       <option value="pending">Pendiente</option>
                       <option value="complete">Completado</option>
@@ -104,9 +105,9 @@ const TasksList = ({ tasks }: TasksListProps) => {
                   <td>
                     <select
                       className="form-select"
-                      defaultValue={task.priority}
-                      aria-label="Default select example"
-                      ref={refPriority}
+                      name="priority"
+                      value={form.priority}
+                      onChange={handleChange}
                     >
                       <option value="high">Alta</option>
                       <option value="medium">Media</option>
@@ -147,6 +148,13 @@ const TasksList = ({ tasks }: TasksListProps) => {
                     <button
                       onClick={() => {
                         setEdit(task.id);
+                        setForm({
+                          title: task.title,
+                          description: task.description,
+                          expDate: task.expDate,
+                          status: task.status,
+                          priority: task.priority,
+                        });
                       }}
                     >
                       Editar

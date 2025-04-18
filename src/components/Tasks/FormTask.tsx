@@ -1,14 +1,7 @@
-import { useTask } from "../../hooks/useTask";
+import { useTask } from "../../context/TaskContext";
 
 export const FormTask = () => {
-  const {
-    refTitle,
-    refDescription,
-    refExpDate,
-    refStatus,
-    refPriority,
-    handleSubmit,
-  } = useTask();
+  const { form, handleChange, handleSubmit } = useTask();
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -18,7 +11,9 @@ export const FormTask = () => {
             type="text"
             className="form-control"
             placeholder="Nombre"
-            ref={refTitle}
+            name="title"
+            value={form.title}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3">
@@ -26,20 +21,27 @@ export const FormTask = () => {
             className="form-control"
             rows={3}
             placeholder="Descripción"
-            ref={refDescription}
+            name="description"
+            value={form.description}
+            onChange={handleChange}
           ></textarea>
         </div>
         <div className="mb-3">
           <input
             type="date"
-            name=""
-            id=""
             className="form-control"
-            ref={refExpDate}
+            name="expDate"
+            value={form.expDate}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <select className="form-select" aria-label="status" ref={refStatus}>
+          <select
+            className="form-select"
+            name="status"
+            value={form.status}
+            onChange={handleChange}
+          >
             <option selected>Estado</option>
             <option value="pending">Pendiente</option>
             <option value="complete">Completado</option>
@@ -48,8 +50,9 @@ export const FormTask = () => {
         <div className="mb-3">
           <select
             className="form-select"
-            aria-label="Default select example"
-            ref={refPriority}
+            name="priority"
+            value={form.priority}
+            onChange={handleChange}
           >
             <option selected>Prioridad</option>
             <option value="high">Alta</option>
