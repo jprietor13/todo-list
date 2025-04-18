@@ -1,5 +1,5 @@
 import { useTask } from "../../hooks/useTask";
-import { useProject } from "../../hooks/useProject";
+import { useProject } from "../../context/ProjectContext";
 import FilterAndOrderTasks from "./FilterAndOrderTasks";
 
 type Task = {

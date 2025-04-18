@@ -1,4 +1,4 @@
-import { useProject } from "../../hooks/useProject";
+import { useProject } from "../../context/ProjectContext";
 import TasksList from "../Tasks/TasksList";
 
 const ProjectList = () => {

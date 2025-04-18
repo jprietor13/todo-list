@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { todoReducer } from "../reducers/appReducer";
-import { useProject } from "./useProject";
+import { useProject } from "../context/ProjectContext";
 
 const initialData = () => {
   const tasks = localStorage.getItem("tasks");
