@@ -122,15 +122,35 @@ export const TaskProvider = ({ children }) => {
   };
 
   const moveTaskToProject = (id: number, projectId: number) => {
-    const taskToMove = tasks?.find((task) => task.id === id);
-    if (!taskToMove) return;
+    // Buscar si la tarea está en el contexto de tareas globales
+    let taskToMove = tasks?.find((task) => task.id === id);
 
-    handleDelete(id);
+    if (taskToMove) {
+      handleDelete(id);
+    } else {
+      const currentProject = projects?.find((project) =>
+        project.tasks?.some((task) => task.id === id)
+      );
+
+      if (!currentProject) return;
+
+      taskToMove = currentProject.tasks.find((task) => task.id === id);
+
+      if (!taskToMove) return;
+
+      dispatchProjects({
+        type: "DELETE_TASK_PROJECT",
+        payload: {
+          projectId: currentProject.id,
+          taskId: id,
+        },
+      });
+    }
 
     dispatchProjects({
       type: "MOVE_TASK",
       payload: {
-        projectId,
+        projectId: projectId,
         task: taskToMove,
       },
     });

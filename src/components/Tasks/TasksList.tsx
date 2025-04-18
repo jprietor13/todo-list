@@ -172,18 +172,22 @@ const TasksList = ({ tasks }: TasksListProps) => {
                         Mover a
                       </button>
                       <ul className="dropdown-menu">
-                        {projects?.map((project) => (
-                          <li key={project.id}>
-                            <button
-                              className="dropdown-item"
-                              onClick={() =>
-                                moveTaskToProject(task.id, project.id)
-                              }
-                            >
-                              {project.title}
-                            </button>
-                          </li>
-                        ))}
+                        {projects
+                          ?.filter(
+                            (p) => !p.tasks?.some((t) => t.id === task.id)
+                          )
+                          .map((project) => (
+                            <li key={project.id}>
+                              <button
+                                className="dropdown-item"
+                                onClick={() =>
+                                  moveTaskToProject(task.id, project.id)
+                                }
+                              >
+                                {project.title}
+                              </button>
+                            </li>
+                          ))}
                       </ul>
                     </div>
                   </td>
