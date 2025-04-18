@@ -9,6 +9,9 @@ const initialData = () => {
 export const useTask = () => {
   const [tasks, dispatch] = useReducer(todoReducer, [], initialData);
   const [edit, setEdit] = useState<number>(0);
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterPriority, setFilterPriority] = useState("");
+  const [sortByDate, setSortByDate] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -73,6 +76,26 @@ export const useTask = () => {
     dispatch(action);
   };
 
+  const getFilteredTasks = () => {
+    let filtered = [...tasks];
+
+    if (filterStatus) {
+      filtered = filtered.filter((task) => task.status === filterStatus);
+    }
+
+    if (filterPriority) {
+      filtered = filtered.filter((task) => task.priority === filterPriority);
+    }
+
+    if (sortByDate) {
+      filtered = filtered.sort(
+        (a, b) => new Date(a.expDate).getTime() - new Date(b.expDate).getTime()
+      );
+    }
+
+    return filtered;
+  };
+
   return {
     refTitle,
     refDescription,
@@ -85,5 +108,12 @@ export const useTask = () => {
     handleDelete,
     edit,
     setEdit,
+    filterStatus,
+    setFilterStatus,
+    filterPriority,
+    setFilterPriority,
+    sortByDate,
+    setSortByDate,
+    getFilteredTasks,
   };
 };
