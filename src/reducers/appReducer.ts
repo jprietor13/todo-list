@@ -15,6 +15,15 @@ export const todoReducer = (state = [], action: any) => {
       return [...state];
     }
 
+    case "MOVE_TASK": {
+      const { projectId, task } = action.payload;
+      return state.map((project) =>
+        project.id === projectId
+          ? { ...project, tasks: [...(project.tasks || []), task] }
+          : project
+      );
+    }
+
     default:
       return state;
   }

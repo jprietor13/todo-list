@@ -1,4 +1,5 @@
 import { useTask } from "../../hooks/useTask";
+import { useProject } from "../../hooks/useProject";
 import FilterAndOrderTasks from "./FilterAndOrderTasks";
 
 const TasksList = () => {
@@ -19,7 +20,10 @@ const TasksList = () => {
     sortByDate,
     setSortByDate,
     getFilteredTasks,
+    moveTaskToProject,
   } = useTask();
+
+  const { projects } = useProject();
 
   return (
     <table className="table caption-top">
@@ -137,6 +141,30 @@ const TasksList = () => {
                     <button onClick={() => handleDelete(task.id)}>
                       Eliminar
                     </button>
+                    <div className="dropdown">
+                      <button
+                        className="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Mover a
+                      </button>
+                      <ul className="dropdown-menu">
+                        {projects?.map((project) => (
+                          <li key={project.id}>
+                            <button
+                              className="dropdown-item"
+                              onClick={() =>
+                                moveTaskToProject(task.id, project.id)
+                              }
+                            >
+                              {project.title}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </td>
                 </>
               )}

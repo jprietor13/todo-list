@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { todoReducer } from "../reducers/appReducer";
+import { useProject } from "./useProject";
 
 const initialData = () => {
   const tasks = localStorage.getItem("tasks");
@@ -22,6 +23,8 @@ export const useTask = () => {
   const refExpDate = useRef("");
   const refStatus = useRef("");
   const refPriority = useRef("");
+
+  const { dispatchProjects } = useProject();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,6 +99,22 @@ export const useTask = () => {
     return filtered;
   };
 
+  const moveTaskToProject = (id: number, projectId: number) => {
+    const taskToMove = tasks?.find((task) => task.id === id);
+
+    if (!taskToMove) return;
+
+    handleDelete(id);
+
+    dispatchProjects({
+      type: "MOVE_TASK",
+      payload: {
+        projectId,
+        task: taskToMove,
+      },
+    });
+  };
+
   return {
     refTitle,
     refDescription,
@@ -115,5 +134,6 @@ export const useTask = () => {
     sortByDate,
     setSortByDate,
     getFilteredTasks,
+    moveTaskToProject,
   };
 };

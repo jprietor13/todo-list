@@ -1,4 +1,5 @@
 import { useProject } from "../../hooks/useProject";
+import TasksList from "../Tasks/TasksList";
 
 const ProjectList = () => {
   const { projects, handleDelete, handleEdit, edit, setEdit, refTitle } =
@@ -59,7 +60,9 @@ const ProjectList = () => {
                   }`}
                   data-bs-parent="#accordionExample"
                 >
-                  <div className="accordion-body">TODO</div>
+                  <div className="accordion-body">
+                    <TasksList />
+                  </div>
                 </div>
               </div>
             );

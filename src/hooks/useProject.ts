@@ -22,6 +22,7 @@ export const useProject = () => {
     const project = {
       id: new Date().getTime(),
       title: refTitle.current.value,
+      tasks: [],
     };
 
     const action = {
@@ -65,5 +66,6 @@ export const useProject = () => {
     handleDelete,
     edit,
     setEdit,
+    dispatchProjects: dispatch,
   };
 };
