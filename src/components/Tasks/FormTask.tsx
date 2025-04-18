@@ -42,8 +42,9 @@ export const FormTask = () => {
             value={form.status}
             onChange={handleChange}
           >
-            <option selected>Estado</option>
-            <option value="pending">Pendiente</option>
+            <option value="pending" selected>
+              Pendiente
+            </option>
             <option value="complete">Completado</option>
           </select>
         </div>
@@ -54,8 +55,9 @@ export const FormTask = () => {
             value={form.priority}
             onChange={handleChange}
           >
-            <option selected>Prioridad</option>
-            <option value="high">Alta</option>
+            <option value="high" selected>
+              Alta
+            </option>
             <option value="medium">Media</option>
             <option value="low">Baja</option>
           </select>

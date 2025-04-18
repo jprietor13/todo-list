@@ -1,8 +1,6 @@
-type ContainerPropd = {
-  children: React.ReactNode;
-};
+import { ContainerProps } from "../typings/global";
 
-export const Container = ({ children }: ContainerPropd) => {
+export const Container = ({ children }: ContainerProps) => {
   return (
     <>
       <article className="empty-text-container">

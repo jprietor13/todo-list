@@ -1,8 +1,4 @@
-type ModalFormProps = {
-  idModal: string;
-  children: React.ReactNode;
-  title: string;
-};
+import { ModalFormProps } from "../typings/global";
 
 const ModalForm = ({ idModal, children, title }: ModalFormProps) => {
   return (

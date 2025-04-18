@@ -7,15 +7,16 @@ import {
 } from "react";
 import { todoReducer } from "../reducers/appReducer";
 import { useProject } from "./ProjectContext";
+import { ProjectProviderProps, Task, TaskContextType } from "../typings/global";
 
-const TaskContext = createContext(null);
+const TaskContext = createContext<TaskContextType | null>(null);
 
 const initialData = () => {
   const tasks = localStorage.getItem("tasks");
   return tasks ? JSON.parse(tasks) : [];
 };
 
-export const TaskProvider = ({ children }) => {
+export const TaskProvider = ({ children }: ProjectProviderProps) => {
   const [tasks, dispatch] = useReducer(todoReducer, [], initialData);
   const [edit, setEdit] = useState<number>(0);
   const [filterStatus, setFilterStatus] = useState("all");
@@ -31,13 +32,14 @@ export const TaskProvider = ({ children }) => {
   });
 
   const { dispatch: dispatchProjects, projects } = useProject();
-  console.log("🚀 ~ TaskProvider ~ projects:", projects);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
@@ -55,7 +57,7 @@ export const TaskProvider = ({ children }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const task = {
@@ -67,12 +69,11 @@ export const TaskProvider = ({ children }) => {
     resetForm();
   };
 
-  const handleEdit = (id) => {
+  const handleEdit = (id: number) => {
     const updatedTask = {
       id,
       ...form,
     };
-    console.log("🚀 ~ handleEdit ~ updatedTask:", updatedTask);
 
     const project = findProjectByTask(id);
 
@@ -88,7 +89,7 @@ export const TaskProvider = ({ children }) => {
     resetForm();
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     const project = findProjectByTask(id);
 
     if (project) {
@@ -101,7 +102,7 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-  const getFilteredTasks = (projectTasks?) => {
+  const getFilteredTasks = (projectTasks: Task[]) => {
     let filtered = [...(projectTasks ?? tasks)];
 
     if (filterStatus !== "all") {
@@ -123,7 +124,7 @@ export const TaskProvider = ({ children }) => {
 
   const moveTaskToProject = (id: number, projectId: number) => {
     // Buscar si la tarea está en el contexto de tareas globales
-    let taskToMove = tasks?.find((task) => task.id === id);
+    let taskToMove: Task | undefined = tasks?.find((task) => task.id === id);
 
     if (taskToMove) {
       handleDelete(id);
@@ -132,9 +133,9 @@ export const TaskProvider = ({ children }) => {
         project.tasks?.some((task) => task.id === id)
       );
 
-      if (!currentProject) return;
+      if (!currentProject?.tasks) return;
 
-      taskToMove = currentProject.tasks.find((task) => task.id === id);
+      taskToMove = currentProject?.tasks.find((task) => task.id === id) as Task;
 
       if (!taskToMove) return;
 

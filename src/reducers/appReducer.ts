@@ -1,4 +1,6 @@
-export const todoReducer = (state = [], action: any) => {
+import { Action, State } from "../typings/global";
+
+export const todoReducer = (state: State = [], action: Action): State => {
   switch (action.type) {
     case "CREATE":
       return [...state, action.payload];
@@ -33,7 +35,7 @@ export const todoReducer = (state = [], action: any) => {
         project.id === projectId
           ? {
               ...project,
-              tasks: project.tasks.filter((t) => t.id !== taskId),
+              tasks: project?.tasks.filter((t) => t.id !== taskId),
             }
           : project
       );
