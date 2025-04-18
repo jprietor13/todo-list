@@ -2,7 +2,19 @@ import { useTask } from "../../hooks/useTask";
 import { useProject } from "../../hooks/useProject";
 import FilterAndOrderTasks from "./FilterAndOrderTasks";
 
-const TasksList = () => {
+type Task = {
+  id: number;
+  title: string;
+  status: "pending" | "completed";
+  priority: "low" | "medium" | "high";
+  expDate: string;
+};
+
+interface TasksListProps {
+  tasks?: Task[]; // opcional
+}
+
+const TasksList = ({ tasks }: TasksListProps) => {
   const {
     refTitle,
     refDescription,
@@ -24,6 +36,7 @@ const TasksList = () => {
   } = useTask();
 
   const { projects } = useProject();
+  const filteredTasks = getFilteredTasks(tasks);
 
   return (
     <table className="table caption-top">
@@ -51,7 +64,7 @@ const TasksList = () => {
       </thead>
       <tbody>
         <>
-          {getFilteredTasks().map((task, index) => (
+          {filteredTasks.map((task, index) => (
             <tr>
               {edit === task.id ? (
                 <>

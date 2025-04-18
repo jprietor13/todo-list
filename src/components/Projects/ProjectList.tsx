@@ -61,7 +61,7 @@ const ProjectList = () => {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body">
-                    <TasksList />
+                    <TasksList tasks={project.tasks} />
                   </div>
                 </div>
               </div>

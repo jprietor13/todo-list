@@ -10,8 +10,8 @@ const initialData = () => {
 export const useTask = () => {
   const [tasks, dispatch] = useReducer(todoReducer, [], initialData);
   const [edit, setEdit] = useState<number>(0);
-  const [filterStatus, setFilterStatus] = useState("");
-  const [filterPriority, setFilterPriority] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterPriority, setFilterPriority] = useState("all");
   const [sortByDate, setSortByDate] = useState(false);
 
   useEffect(() => {
@@ -79,19 +79,19 @@ export const useTask = () => {
     dispatch(action);
   };
 
-  const getFilteredTasks = () => {
-    let filtered = [...tasks];
+  const getFilteredTasks = (projectTasks?) => {
+    let filtered = [...(projectTasks ?? tasks)];
 
-    if (filterStatus) {
+    if (filterStatus !== "all") {
       filtered = filtered.filter((task) => task.status === filterStatus);
     }
 
-    if (filterPriority) {
+    if (filterPriority !== "all") {
       filtered = filtered.filter((task) => task.priority === filterPriority);
     }
 
     if (sortByDate) {
-      filtered = filtered.sort(
+      filtered.sort(
         (a, b) => new Date(a.expDate).getTime() - new Date(b.expDate).getTime()
       );
     }
