@@ -30,7 +30,8 @@ export const TaskProvider = ({ children }) => {
     priority: "",
   });
 
-  const { dispatchProjects } = useProject();
+  const { dispatch: dispatchProjects, projects } = useProject();
+  console.log("🚀 ~ TaskProvider ~ projects:", projects);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -71,13 +72,33 @@ export const TaskProvider = ({ children }) => {
       id,
       ...form,
     };
+    console.log("🚀 ~ handleEdit ~ updatedTask:", updatedTask);
 
-    dispatch({ type: "EDIT", payload: updatedTask });
+    const project = findProjectByTask(id);
+
+    if (project) {
+      dispatchProjects({
+        type: "EDIT_TASK_PROJECT",
+        payload: { projectId: project.id, task: updatedTask },
+      });
+    } else {
+      dispatch({ type: "EDIT", payload: updatedTask });
+    }
+
     resetForm();
   };
 
   const handleDelete = (id) => {
-    dispatch({ type: "DELETE", payload: id });
+    const project = findProjectByTask(id);
+
+    if (project) {
+      dispatchProjects({
+        type: "DELETE_TASK_PROJECT",
+        payload: { projectId: project.id, taskId: id },
+      });
+    } else {
+      dispatch({ type: "DELETE", payload: id });
+    }
   };
 
   const getFilteredTasks = (projectTasks?) => {
@@ -113,6 +134,13 @@ export const TaskProvider = ({ children }) => {
         task: taskToMove,
       },
     });
+  };
+
+  const findProjectByTask = (id) => {
+    const search = projects?.find((project) => {
+      return project.tasks?.some((task) => task.id === id);
+    });
+    return search;
   };
 
   return (

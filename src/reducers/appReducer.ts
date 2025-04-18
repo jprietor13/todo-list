@@ -15,6 +15,30 @@ export const todoReducer = (state = [], action: any) => {
       return [...state];
     }
 
+    case "EDIT_TASK_PROJECT": {
+      const { projectId, task } = action.payload;
+      return state.map((project) =>
+        project.id === projectId
+          ? {
+              ...project,
+              tasks: project.tasks.map((t) => (t.id === task.id ? task : t)),
+            }
+          : project
+      );
+    }
+
+    case "DELETE_TASK_PROJECT": {
+      const { projectId, taskId } = action.payload;
+      return state.map((project) =>
+        project.id === projectId
+          ? {
+              ...project,
+              tasks: project.tasks.filter((t) => t.id !== taskId),
+            }
+          : project
+      );
+    }
+
     case "MOVE_TASK": {
       const { projectId, task } = action.payload;
       return state.map((project) =>
