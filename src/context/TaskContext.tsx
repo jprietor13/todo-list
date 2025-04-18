@@ -192,4 +192,12 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
   );
 };
 
-export const useTask = () => useContext(TaskContext);
+export const useTask = () => {
+  const context = useContext(TaskContext);
+
+  if (!context) {
+    throw new Error("Error en el task context");
+  }
+
+  return context;
+};

@@ -51,7 +51,9 @@ export interface TaskContextType {
   form: Task;
   setForm: Dispatch<SetStateAction<Task>>;
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleEdit: (id: number) => void;

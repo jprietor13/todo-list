@@ -78,7 +78,6 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
 
 export const useProject = () => {
   const context = useContext(ProjectContext);
-  if (!context)
-    throw new Error("useProject must be used within a ProjectProvider");
+  if (!context) throw new Error("Error en el project context");
   return context;
 };

@@ -1,4 +1,6 @@
-const FilterAndOrderTasks = ({
+import { TaskContextType } from "../../typings/global";
+
+const FilterAndOrderTasks: React.FC<TaskContextType> = ({
   filterStatus,
   setFilterStatus,
   filterPriority,
