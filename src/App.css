@@ -76,25 +76,32 @@
   border: 2px solid #dee2e6;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
+  display: flex;
+}
+
+.container-btn-accordion {
+  background-color: #dee2e6;
+}
+
+.accordion-header .btn-primary,
+.accordion-header .bg-danger {
+  width: 100%;
 }
 
 .accordion-button {
   font-size: 32px;
   background-color: #dee2e6 !important;
+  border-top-right-radius: 0px !important;
 }
-/* 
-.container-btn-accordion {
-  position: absolute;
-  right: 70px;
-} */
+
+.accordion-button:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 .container-opt-project {
   display: flex;
   align-items: end;
-}
-
-.container-input {
-  width: 50vw;
 }
 
 .container-options {
@@ -181,5 +188,20 @@
     padding: 10px;
     border-radius: 7px;
     margin-bottom: 10px;
+  }
+
+  .container-btn-accordion {
+    display: flex;
+    padding: 10px;
+  }
+
+  .accordion-header {
+    display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .layout {
+    grid-template-columns: 100%;
   }
 }

@@ -30,17 +30,49 @@ const ProjectList = () => {
             return (
               <div className="accordion-item" key={project.id}>
                 <h2 className="accordion-header" id={headingId}>
-                  <button
-                    className={`accordion-button ${
-                      !isFirst ? "collapsed" : ""
-                    }`}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#${collapseId}`}
-                    aria-expanded={isFirst ? "true" : "false"}
-                    aria-controls={collapseId}
-                  >
-                    {edit !== project.id && project.title}
+                  <>
+                    <button
+                      className={`accordion-button ${
+                        !isFirst ? "collapsed" : ""
+                      }`}
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#${collapseId}`}
+                      aria-expanded={isFirst ? "true" : "false"}
+                      aria-controls={collapseId}
+                    >
+                      {edit !== project.id && project.title}
+                      {edit === project.id && (
+                        <div className="container-opt-project">
+                          <div className="container-input">
+                            <input
+                              className="form-control"
+                              type="text"
+                              name="title"
+                              value={title}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="container-options">
+                            <span
+                              onClick={() => {
+                                handleEdit(project.id);
+                                setEdit(0);
+                              }}
+                              className="btn btn-primary me-1"
+                            >
+                              Guardar
+                            </span>
+                          </div>
+                          <span
+                            onClick={() => setEdit(0)}
+                            className="btn btn-secondary ms-2"
+                          >
+                            Cancelar
+                          </span>
+                        </div>
+                      )}
+                    </button>
                     <div className="container-btn-accordion">
                       <span
                         onClick={() => {
@@ -60,44 +92,15 @@ const ProjectList = () => {
                         className="btn bg-danger text-white"
                       >
                         <i
-                          class="bi bi-trash3-fill"
+                          className="bi bi-trash3-fill"
                           style={{ paddingRight: "2px" }}
                         ></i>
                         Eliminar
                       </span>
                     </div>
-                    {edit === project.id && (
-                      <div className="container-opt-project">
-                        <div className="container-input">
-                          <input
-                            className="form-control"
-                            type="text"
-                            name="title"
-                            value={title}
-                            onChange={handleChange}
-                          />
-                        </div>
-                        <div className="container-options">
-                          <span
-                            onClick={() => {
-                              handleEdit(project.id);
-                              setEdit(0);
-                            }}
-                            className="btn btn-primary me-1"
-                          >
-                            Guardar
-                          </span>
-                        </div>
-                        <span
-                          onClick={() => setEdit(0)}
-                          className="btn btn-secondary"
-                        >
-                          Cancelar
-                        </span>
-                      </div>
-                    )}
-                  </button>
+                  </>
                 </h2>
+
                 <div
                   id={collapseId}
                   className={`accordion-collapse collapse ${
