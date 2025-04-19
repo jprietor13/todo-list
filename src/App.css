@@ -17,6 +17,7 @@
   border-bottom: 2px solid black;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 /*Nabvar styles*/
@@ -158,6 +159,45 @@
   .task-grid > :last-child {
     grid-column: 1 / -1;
   }
+}
+
+/*Dark theme*/
+
+.dark-theme {
+  background-color: black;
+  color: white;
+}
+
+.dark-theme .active {
+  background-color: white;
+}
+
+.dark-theme .active {
+  color: black !important;
+}
+
+.dark-theme .navbar-container ul {
+  border: 2px solid white;
+  border-radius: 5px;
+  display: inherit;
+  padding: 0;
+}
+
+.btn-primary {
+  border: 1px solid white;
+}
+
+.dark-theme .navbar-container ul li a {
+  color: white;
+}
+
+.dark-theme .header-container,
+.dark-theme .navbar-container {
+  border-bottom: 2px solid white;
+}
+
+.dark-theme .task-grid.border-bottom:hover {
+  color: black;
 }
 
 @media (max-width: 768px) {
