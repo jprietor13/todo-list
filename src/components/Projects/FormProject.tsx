@@ -9,15 +9,19 @@ export const FormProject = () => {
     <form onSubmit={onSubmit}>
       <div className="modal-body">
         <div className="mb-3">
+          <strong>
+            <label htmlFor="title" className="form-label">
+              Titulo
+            </label>
+          </strong>
           <input
             type="text"
             className={`form-control ${error ? "is-invalid" : ""}`}
-            placeholder="Nombre"
             value={title}
             onChange={handleChange}
           />
           {error && (
-            <div className="invalid-feedback">El nombre es obligatorio</div>
+            <div className="invalid-feedback">El título es obligatorio</div>
           )}
         </div>
       </div>

@@ -16,8 +16,7 @@ const ProjectList = () => {
   return (
     <>
       <div className="task-header">
-        <h3 className="mt-3 mb-3">Lista de proyectos</h3>
-        <h3>
+        <h3 className="mt-3 mb-3">
           Proyectos: <strong>{projects && projects.length}</strong>
         </h3>
       </div>

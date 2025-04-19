@@ -25,7 +25,7 @@ export const FormTask = () => {
             onChange={handleChange}
           />
           {error && (
-            <div className="invalid-feedback">El nombre es obligatorio</div>
+            <div className="invalid-feedback">El título es obligatorio</div>
           )}
         </div>
         <div className="mb-3">
