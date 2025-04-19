@@ -3,6 +3,11 @@
 :root {
   --size-title-one: 25px;
 }
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .layout {
   display: grid;
   grid-template-columns: 90%;
@@ -174,6 +179,7 @@
 
 .dark-theme .active {
   color: black !important;
+  transition: 0.5ms;
 }
 
 .dark-theme .navbar-container ul {
@@ -198,6 +204,11 @@
 
 .dark-theme .task-grid.border-bottom:hover {
   color: black;
+}
+
+.dark-theme .btn-outline-secondary {
+  background-color: #6c757d;
+  color: white;
 }
 
 @media (max-width: 768px) {
