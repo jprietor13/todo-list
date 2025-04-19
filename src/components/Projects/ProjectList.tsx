@@ -2,13 +2,24 @@ import { useProject } from "../../context/ProjectContext";
 import TasksList from "../Tasks/TasksList";
 
 const ProjectList = () => {
-  const { projects, handleDelete, handleEdit, edit, setEdit, refTitle } =
-    useProject();
-  console.log("🚀 ~ ProjectList ~ projects:", projects);
-
+  const {
+    projects,
+    handleDelete,
+    handleEdit,
+    edit,
+    setEdit,
+    title,
+    handleChange,
+  } = useProject();
+  console.log("🚀 ~ ProjectList ~ title:", title);
   return (
     <>
-      <div>Numero de proyectos: {projects && projects.length}</div>
+      <div className="task-header">
+        <h3 className="mt-3 mb-3">Lista de proyectos</h3>
+        <h3>
+          Proyectos: <strong>{projects && projects.length}</strong>
+        </h3>
+      </div>
       <div className="accordion" id="accordionExample">
         {projects &&
           projects.map((project, index) => {
@@ -32,28 +43,50 @@ const ProjectList = () => {
                   >
                     {edit !== project.id && project.title}
                   </button>
+                  <div className="container-btn-accordion">
+                    <button
+                      onClick={() => setEdit(project.id)}
+                      className="btn btn-primary me-1"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(project.id)}
+                      className="btn btn-secondary"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
                   {edit === project.id && (
-                    <div>
-                      <input
-                        type="text"
-                        defaultValue={project.title}
-                        ref={refTitle}
-                      />
+                    <div className="container-opt-project">
+                      <div className="container-input">
+                        <input
+                          className="form-control"
+                          type="text"
+                          name="title"
+                          value={title}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="container-options">
+                        <button
+                          onClick={() => {
+                            handleEdit(project.id);
+                            setEdit(0);
+                          }}
+                          className="btn btn-primary me-1"
+                        >
+                          Guardar
+                        </button>
+                      </div>
                       <button
-                        onClick={() => {
-                          handleEdit(project.id);
-                          setEdit(0);
-                        }}
+                        onClick={() => setEdit(0)}
+                        className="btn btn-secondary"
                       >
-                        Guardar
+                        Cancelar
                       </button>
-                      <button onClick={() => setEdit(0)}>Cancelar</button>
                     </div>
                   )}
-                  <button onClick={() => setEdit(project.id)}>Editar</button>
-                  <button onClick={() => handleDelete(project.id)}>
-                    Eliminar
-                  </button>
                 </h2>
                 <div
                   id={collapseId}
@@ -63,7 +96,11 @@ const ProjectList = () => {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body">
-                    {hasTasks !== 0 && <TasksList tasks={project.tasks} />}
+                    {hasTasks !== 0 ? (
+                      <TasksList tasks={project.tasks} />
+                    ) : (
+                      <h3 className="text-center">Sin tareas</h3>
+                    )}
                   </div>
                 </div>
               </div>
