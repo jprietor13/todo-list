@@ -9,9 +9,10 @@ const ProjectList = () => {
     edit,
     setEdit,
     title,
+    setTitle,
     handleChange,
   } = useProject();
-  console.log("🚀 ~ ProjectList ~ title:", title);
+
   return (
     <>
       <div className="task-header">
@@ -26,7 +27,6 @@ const ProjectList = () => {
             const isFirst = index === 0;
             const collapseId = `collapse-${project.id}`;
             const headingId = `heading-${project.id}`;
-            const hasTasks = project.tasks?.length;
 
             return (
               <div className="accordion-item" key={project.id}>
@@ -42,51 +42,54 @@ const ProjectList = () => {
                     aria-controls={collapseId}
                   >
                     {edit !== project.id && project.title}
-                  </button>
-                  <div className="container-btn-accordion">
-                    <button
-                      onClick={() => setEdit(project.id)}
-                      className="btn btn-primary me-1"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={() => handleDelete(project.id)}
-                      className="btn btn-secondary"
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                  {edit === project.id && (
-                    <div className="container-opt-project">
-                      <div className="container-input">
-                        <input
-                          className="form-control"
-                          type="text"
-                          name="title"
-                          value={title}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="container-options">
-                        <button
-                          onClick={() => {
-                            handleEdit(project.id);
-                            setEdit(0);
-                          }}
-                          className="btn btn-primary me-1"
-                        >
-                          Guardar
-                        </button>
-                      </div>
-                      <button
-                        onClick={() => setEdit(0)}
+                    <div className="container-btn-accordion">
+                      <span
+                        onClick={() => {
+                          setEdit(project.id);
+                          setTitle(project.title);
+                        }}
+                        className="btn btn-primary me-1"
+                      >
+                        Editar
+                      </span>
+                      <span
+                        onClick={() => handleDelete(project.id)}
                         className="btn btn-secondary"
                       >
-                        Cancelar
-                      </button>
+                        Eliminar
+                      </span>
                     </div>
-                  )}
+                    {edit === project.id && (
+                      <div className="container-opt-project">
+                        <div className="container-input">
+                          <input
+                            className="form-control"
+                            type="text"
+                            name="title"
+                            value={title}
+                            onChange={handleChange}
+                          />
+                        </div>
+                        <div className="container-options">
+                          <span
+                            onClick={() => {
+                              handleEdit(project.id);
+                              setEdit(0);
+                            }}
+                            className="btn btn-primary me-1"
+                          >
+                            Guardar
+                          </span>
+                        </div>
+                        <span
+                          onClick={() => setEdit(0)}
+                          className="btn btn-secondary"
+                        >
+                          Cancelar
+                        </span>
+                      </div>
+                    )}
+                  </button>
                 </h2>
                 <div
                   id={collapseId}
@@ -96,7 +99,7 @@ const ProjectList = () => {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body">
-                    {hasTasks !== 0 ? (
+                    {project.tasks?.length ? (
                       <TasksList tasks={project.tasks} />
                     ) : (
                       <h3 className="text-center">Sin tareas</h3>

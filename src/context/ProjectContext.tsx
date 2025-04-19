@@ -44,9 +44,9 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
     const project = projects?.find((project) => project.id === id);
     if (!project) return;
 
-    setTitle(project.title);
-
     dispatch({ type: "EDIT", payload: { id, title } });
+
+    setTitle(project.title);
     setEdit(id);
   };
 
@@ -64,6 +64,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
         projects,
         dispatch,
         title,
+        setTitle,
         handleSubmit,
         handleEdit,
         handleDelete,

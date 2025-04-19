@@ -40,6 +40,7 @@ export interface ProjectContextType {
   projects: Project[];
   dispatch: React.Dispatch<any>;
   title: string;
+  setTitle: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleEdit: (id: number) => void;

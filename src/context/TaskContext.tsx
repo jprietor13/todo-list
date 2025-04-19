@@ -74,7 +74,7 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
       id,
       ...form,
     };
-
+    console.log(form);
     const project = findProjectByTask(id);
 
     if (project) {
