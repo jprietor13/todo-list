@@ -12,15 +12,29 @@ export const DetailsTask = ({ index, task }) => {
       <div>{task.title}</div>
       <div>{task.description}</div>
       <div>{task.expDate}</div>
-      <div>{task.status === "complete" ? "Completado" : "Pendiente"}</div>
-      <div>
+      <div
+        className={`px-2 py-1 rounded text-white ${
+          task.status === "complete" ? "bg-success" : "bg-danger"
+        }`}
+      >
+        {task.status === "complete" ? "Completado" : "Pendiente"}
+      </div>
+      <div
+        className={`px-2 py-1 rounded text-white w-50 ${
+          task.priority === "high"
+            ? "bg-danger"
+            : task.priority === "medium"
+            ? "bg-warning text-dark"
+            : "bg-info"
+        }`}
+      >
         {task.priority === "high"
           ? "Alta"
           : task.priority === "medium"
           ? "Media"
           : "Baja"}
       </div>
-      <div className="d-flex gap-2 flex-column flex-wrap">
+      <div className="d-flex gap-2 flex-row flex-wrap">
         <div className="d-flex gap-2">
           <button
             className="btn btn-primary btn-sm"
@@ -35,12 +49,17 @@ export const DetailsTask = ({ index, task }) => {
               });
             }}
           >
+            <i
+              className="bi bi-pencil-square"
+              style={{ paddingRight: "2px" }}
+            ></i>{" "}
             Editar
           </button>
           <button
             className="btn btn-danger btn-sm"
             onClick={() => handleDelete(task.id)}
           >
+            <i class="bi bi-trash3-fill" style={{ paddingRight: "2px" }}></i>
             Eliminar
           </button>
         </div>

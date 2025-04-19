@@ -12,10 +12,14 @@ export const FormTask = () => {
     <form onSubmit={onSubmit}>
       <div className="modal-body">
         <div className="mb-3">
+          <label htmlFor="title" className="form-label">
+            <strong>
+              Título <span style={{ color: "red" }}>*</span>
+            </strong>
+          </label>
           <input
             type="text"
             className={`form-control ${error ? "is-invalid" : ""}`}
-            placeholder="Nombre"
             name="title"
             value={form.title}
             onChange={handleChange}
@@ -25,16 +29,25 @@ export const FormTask = () => {
           )}
         </div>
         <div className="mb-3">
+          <strong>
+            <label htmlFor="title" className="form-label">
+              Descripción
+            </label>
+          </strong>
           <textarea
             className="form-control"
             rows={3}
-            placeholder="Descripción"
             name="description"
             value={form.description}
             onChange={handleChange}
           ></textarea>
         </div>
         <div className="mb-3">
+          <strong>
+            <label htmlFor="title" className="form-label">
+              Fecha de vencimiento
+            </label>
+          </strong>
           <input
             type="date"
             className="form-control"
@@ -44,6 +57,11 @@ export const FormTask = () => {
           />
         </div>
         <div className="mb-3">
+          <strong>
+            <label htmlFor="title" className="form-label">
+              Estado
+            </label>
+          </strong>
           <select
             className="form-select"
             name="status"
@@ -57,6 +75,11 @@ export const FormTask = () => {
           </select>
         </div>
         <div className="mb-3">
+          <strong>
+            <label htmlFor="title" className="form-label">
+              Prioridad
+            </label>
+          </strong>
           <select
             className="form-select"
             name="priority"

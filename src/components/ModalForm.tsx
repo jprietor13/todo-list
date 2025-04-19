@@ -9,6 +9,10 @@ const ModalForm = ({ idModal, children, title }: ModalFormProps) => {
         data-bs-toggle="modal"
         data-bs-target={`#${idModal}`}
       >
+        <i
+          className="bi bi-plus-square pr-4"
+          style={{ paddingRight: "4px" }}
+        ></i>
         {title}
       </button>
 

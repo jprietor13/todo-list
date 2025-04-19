@@ -3,7 +3,6 @@ import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { Projects } from "../components/Projects/Projects";
 import { Tasks } from "../components/Tasks/Tasks";
-import { Footer } from "../components/Footer";
 
 const RouteApp = () => {
   return (
@@ -14,7 +13,6 @@ const RouteApp = () => {
         <Route index path="/" element={<Projects />} />
         <Route index path="/tasks" element={<Tasks />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };

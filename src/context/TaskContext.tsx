@@ -103,6 +103,13 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
   };
 
   const getFilteredTasks = (projectTasks: Task[]) => {
+    const noFilters =
+      filterStatus === "all" &&
+      filterPriority === "all" &&
+      sortByDate === false;
+
+    if (noFilters) return [...(projectTasks ?? tasks)];
+
     let filtered = [...(projectTasks ?? tasks)];
 
     if (filterStatus !== "all") {

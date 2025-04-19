@@ -50,12 +50,20 @@ const ProjectList = () => {
                         }}
                         className="btn btn-primary me-1"
                       >
+                        <i
+                          className="bi bi-pencil-square"
+                          style={{ paddingRight: "2px" }}
+                        ></i>{" "}
                         Editar
                       </span>
                       <span
                         onClick={() => handleDelete(project.id)}
-                        className="btn btn-secondary"
+                        className="btn bg-danger text-white"
                       >
+                        <i
+                          class="bi bi-trash3-fill"
+                          style={{ paddingRight: "2px" }}
+                        ></i>
                         Eliminar
                       </span>
                     </div>

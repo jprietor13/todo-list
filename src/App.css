@@ -14,7 +14,7 @@
 /*Hero styles*/
 .header-container {
   grid-area: header;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid black;
   display: flex;
   justify-content: space-between;
 }
@@ -24,12 +24,12 @@
   grid-area: navbar;
   display: flex;
   justify-content: center;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid black;
 }
 
 .navbar-container ul {
   margin-top: 15px;
-  border: 2px solid green;
+  border: 2px solid black;
   border-radius: 5px;
   display: inherit;
   list-style: none;
@@ -54,7 +54,7 @@
 
 .active {
   transform: translateX(0px);
-  background-color: blue;
+  background-color: black;
   border-radius: 2px;
   color: white !important;
 }
@@ -100,18 +100,34 @@
   padding-left: 20px;
 }
 
+.container-filters {
+  display: flex;
+  align-items: end;
+}
+
 #accordionExample {
   padding: 0 40px 40px;
 }
 
 .task-grid {
   display: grid;
-  grid-template-columns: 0.2fr repeat(6, 1fr);
+  grid-template-columns: 0.2fr 1fr 1.5fr 0.5fr 0.5fr 1fr 1fr;
   gap: 0.5rem;
   align-items: start;
 }
 
+.task-grid.border-bottom:hover {
+  background-color: #cfe2ff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .footer-container {
-  border-top: 2px solid red;
+  border-top: 2px solid black;
   grid-area: footer;
+}
+
+.btn-primary {
+  background-color: black;
+  border: 1px solid black;
 }

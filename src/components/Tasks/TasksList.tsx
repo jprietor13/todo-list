@@ -31,15 +31,17 @@ const TasksList = ({ tasks }: TasksListProps) => {
 
   return (
     <>
-      <h3>Lista de tareas</h3>
-      <FilterAndOrderTasks
-        filterStatus={filterStatus}
-        setFilterStatus={setFilterStatus}
-        filterPriority={filterPriority}
-        setFilterPriority={setFilterPriority}
-        sortByDate={sortByDate}
-        setSortByDate={setSortByDate}
-      />
+      <div className="d-flex justify-content-between w-100 align-items-center">
+        <h3>Lista de tareas</h3>
+        <FilterAndOrderTasks
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          filterPriority={filterPriority}
+          setFilterPriority={setFilterPriority}
+          sortByDate={sortByDate}
+          setSortByDate={setSortByDate}
+        />
+      </div>
       <div className="tasks-container">
         {/* Header */}
         <div className="task-grid task-header fw-bold border-bottom py-2">
