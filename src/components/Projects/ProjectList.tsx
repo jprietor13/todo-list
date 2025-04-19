@@ -4,6 +4,7 @@ import TasksList from "../Tasks/TasksList";
 const ProjectList = () => {
   const { projects, handleDelete, handleEdit, edit, setEdit, refTitle } =
     useProject();
+  console.log("🚀 ~ ProjectList ~ projects:", projects);
 
   return (
     <>
@@ -14,6 +15,7 @@ const ProjectList = () => {
             const isFirst = index === 0;
             const collapseId = `collapse-${project.id}`;
             const headingId = `heading-${project.id}`;
+            const hasTasks = project.tasks?.length;
 
             return (
               <div className="accordion-item" key={project.id}>
@@ -61,7 +63,7 @@ const ProjectList = () => {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body">
-                    <TasksList tasks={project.tasks} />
+                    {hasTasks !== 0 && <TasksList tasks={project.tasks} />}
                   </div>
                 </div>
               </div>
