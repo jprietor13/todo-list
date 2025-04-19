@@ -37,115 +37,122 @@ const TasksList = ({ tasks }: TasksListProps) => {
   const filteredTasks = getFilteredTasks(tasks);
 
   return (
-    <table className="table caption-top">
-      <caption>
-        <h2>Lista de tareas</h2>
-        <FilterAndOrderTasks
-          filterStatus={filterStatus}
-          setFilterStatus={setFilterStatus}
-          filterPriority={filterPriority}
-          setFilterPriority={setFilterPriority}
-          sortByDate={sortByDate}
-          setSortByDate={setSortByDate}
-        />
-      </caption>
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Título</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Fecha de vencimiento</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Prioridad</th>
-          <th scope="col">Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <>
-          {filteredTasks.map((task, index) => (
-            <tr>
-              {edit === task.id ? (
-                <>
-                  <th scope="row">{index + 1}</th>
-                  <td>
-                    <input
-                      type="text"
-                      name="title"
-                      value={form.title}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>
-                    <textarea
-                      name="description"
-                      value={form.description}
-                      onChange={handleChange}
-                      rows={3}
-                    ></textarea>
-                  </td>
-                  <td>
-                    <input
-                      type="date"
-                      name="expDate"
-                      value={form.expDate}
-                      onChange={handleChange}
-                    />
-                  </td>
-                  <td>
-                    <select
-                      className="form-select"
-                      name="status"
-                      value={form.status}
-                      onChange={handleChange}
-                    >
-                      <option value="pending">Pendiente</option>
-                      <option value="complete">Completado</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      className="form-select"
-                      name="priority"
-                      value={form.priority}
-                      onChange={handleChange}
-                    >
-                      <option value="high">Alta</option>
-                      <option value="medium">Media</option>
-                      <option value="low">Baja</option>
-                    </select>
-                  </td>
-                  <td>
+    <>
+      <h3>Lista de tareas</h3>
+      <FilterAndOrderTasks
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+        filterPriority={filterPriority}
+        setFilterPriority={setFilterPriority}
+        sortByDate={sortByDate}
+        setSortByDate={setSortByDate}
+      />
+      <div className="tasks-container">
+        {/* Header */}
+        <div className="task-grid task-header fw-bold border-bottom py-2">
+          <div>#</div>
+          <div>Título</div>
+          <div>Descripción</div>
+          <div>Fecha de vencimiento</div>
+          <div>Estado</div>
+          <div>Prioridad</div>
+          <div>Opciones</div>
+        </div>
+
+        {/* Rows */}
+        {filteredTasks.map((task, index) => (
+          <div key={task.id} className="task-grid border-bottom py-2">
+            {edit === task.id ? (
+              <>
+                <div>{index + 1}</div>
+                <div>
+                  <input
+                    type="text"
+                    name="title"
+                    value={form.title}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    name="description"
+                    value={form.description}
+                    onChange={handleChange}
+                    rows={1}
+                    className="form-control"
+                  ></textarea>
+                </div>
+                <div>
+                  <input
+                    type="date"
+                    name="expDate"
+                    value={form.expDate}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div>
+                  <select
+                    className="form-select"
+                    name="status"
+                    value={form.status}
+                    onChange={handleChange}
+                  >
+                    <option value="pending">Pendiente</option>
+                    <option value="complete">Completado</option>
+                  </select>
+                </div>
+                <div>
+                  <select
+                    className="form-select"
+                    name="priority"
+                    value={form.priority}
+                    onChange={handleChange}
+                  >
+                    <option value="high">Alta</option>
+                    <option value="medium">Media</option>
+                    <option value="low">Baja</option>
+                  </select>
+                </div>
+                <div className="d-flex gap-2 flex-wrap">
+                  <button
+                    className="btn btn-success btn-sm"
+                    onClick={() => {
+                      handleEdit(task.id);
+                      setEdit(0);
+                    }}
+                  >
+                    Guardar
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => setEdit(0)}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>{index + 1}</div>
+                <div>{task.title}</div>
+                <div>{task.description}</div>
+                <div>{task.expDate}</div>
+                <div>
+                  {task.status === "complete" ? "Completado" : "Pendiente"}
+                </div>
+                <div>
+                  {task.priority === "high"
+                    ? "Alta"
+                    : task.priority === "medium"
+                    ? "Media"
+                    : "Baja"}
+                </div>
+                <div className="d-flex gap-2 flex-column flex-wrap">
+                  <div className="d-flex gap-2">
                     <button
-                      onClick={() => {
-                        handleEdit(task.id);
-                        setEdit(0);
-                      }}
-                    >
-                      Guardar
-                    </button>
-                    <button onClick={() => setEdit(0)}>Cancelar</button>
-                  </td>
-                </>
-              ) : (
-                <>
-                  <th scope="row">{index + 1}</th>
-                  <td>{task.title}</td>
-                  <td>{task.description}</td>
-                  <td>{task.expDate}</td>
-                  <td>
-                    {task.status === "complete" ? "Completado" : "Pendiente"}
-                  </td>
-                  <td>
-                    {task.priority === "high"
-                      ? "Alto"
-                      : task.priority === "medium"
-                      ? "Medio"
-                      : task.priority === "low"
-                      ? "Bajo"
-                      : ""}
-                  </td>
-                  <td>
-                    <button
+                      className="btn btn-primary btn-sm"
                       onClick={() => {
                         setEdit(task.id);
                         setForm({
@@ -159,45 +166,46 @@ const TasksList = ({ tasks }: TasksListProps) => {
                     >
                       Editar
                     </button>
-                    <button onClick={() => handleDelete(task.id)}>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleDelete(task.id)}
+                    >
                       Eliminar
                     </button>
-                    <div className="dropdown">
-                      <button
-                        className="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Mover a
-                      </button>
-                      <ul className="dropdown-menu">
-                        {projects
-                          ?.filter(
-                            (p) => !p.tasks?.some((t) => t.id === task.id)
-                          )
-                          .map((project) => (
-                            <li key={project.id}>
-                              <button
-                                className="dropdown-item"
-                                onClick={() =>
-                                  moveTaskToProject(task.id, project.id)
-                                }
-                              >
-                                {project.title}
-                              </button>
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  </td>
-                </>
-              )}
-            </tr>
-          ))}
-        </>
-      </tbody>
-    </table>
+                  </div>
+                  <div className="dropdown">
+                    <button
+                      className="btn btn-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Mover a
+                    </button>
+                    <ul className="dropdown-menu">
+                      {projects
+                        ?.filter((p) => !p.tasks?.some((t) => t.id === task.id))
+                        .map((project) => (
+                          <li key={project.id}>
+                            <button
+                              className="dropdown-item"
+                              onClick={() =>
+                                moveTaskToProject(task.id, project.id)
+                              }
+                            >
+                              {project.title}
+                            </button>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

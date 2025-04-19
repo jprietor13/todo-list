@@ -23,6 +23,17 @@
   grid-area: todo-project;
 }
 
+.task-grid {
+  display: grid;
+  grid-template-columns: 0.2fr repeat(6, 1fr);
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.task-header {
+  background-color: #f8f9fa;
+}
+
 .footer-container {
   border-top: 2px solid red;
   grid-area: footer;

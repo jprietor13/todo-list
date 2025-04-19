@@ -57,12 +57,12 @@ export interface TaskContextType {
     >
   ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleEdit: (id: number) => void;
+  handleEdit: (id: number | undefined) => void;
   resetForm: () => void;
   tasks: Task[];
-  handleDelete: (id: number) => void;
+  handleDelete: (id: number | undefined) => void;
   edit: number;
-  setEdit: Dispatch<SetStateAction<number>>;
+  setEdit: Dispatch<SetStateAction<number | undefined>>;
   filterStatus: string;
   setFilterStatus: Dispatch<SetStateAction<string>>;
   filterPriority: string;
@@ -70,7 +70,7 @@ export interface TaskContextType {
   sortByDate: boolean;
   setSortByDate: Dispatch<SetStateAction<boolean>>;
   getFilteredTasks: (projectTasks: Task[]) => Task[];
-  moveTaskToProject: (id: number, projectId: number) => void;
+  moveTaskToProject: (id: number | undefined, projectId: number) => void;
 }
 
 export interface ProjectProviderProps {
