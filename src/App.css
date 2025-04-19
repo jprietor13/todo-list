@@ -1,26 +1,107 @@
 /*Layout styles*/
+
+:root {
+  --size-title-one: 25px;
+}
 .layout {
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 90%;
   grid-template-rows: auto;
-  grid-template-areas: "header header" "navbar todo-project" "footer footer";
+  grid-template-areas: "header" "navbar" "todo-project" "footer";
+  justify-content: center;
 }
 
 /*Hero styles*/
 .header-container {
   grid-area: header;
   border-bottom: 2px solid red;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*Nabvar styles*/
 .navbar-container {
   grid-area: navbar;
-  border-right: 2px solid red;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid red;
+}
+
+.navbar-container ul {
+  margin-top: 15px;
+  border: 2px solid green;
+  border-radius: 5px;
+  display: inherit;
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-container ul li {
+  text-decoration: underline;
+  border-radius: 2px;
+  text-align: center;
+  text-decoration: none;
+  width: 300px;
+  font-size: var(--size-title-one);
+}
+
+.navbar-container ul li a {
+  display: block;
+  transition: transform 0.4s ease, background-color 0.4s ease;
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  transform: translateX(0px);
+  background-color: blue;
+  border-radius: 2px;
+  color: white !important;
 }
 
 /*todo-project-containers styles*/
 .todo-project-container {
   grid-area: todo-project;
+  margin: 20px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-header {
+  margin-bottom: 0;
+  border: 2px solid #dee2e6;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.accordion-button {
+  font-size: 32px;
+}
+
+.container-btn-accordion {
+  position: absolute;
+  right: 70px;
+}
+
+.container-opt-project {
+  display: flex;
+  align-items: end;
+}
+
+.container-input {
+  width: 50vw;
+}
+
+.container-options {
+  padding-left: 20px;
+}
+
+#accordionExample {
+  padding: 0 40px 40px;
 }
 
 .task-grid {
@@ -28,10 +109,6 @@
   grid-template-columns: 0.2fr repeat(6, 1fr);
   gap: 0.5rem;
   align-items: start;
-}
-
-.task-header {
-  background-color: #f8f9fa;
 }
 
 .footer-container {
