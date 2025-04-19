@@ -28,40 +28,38 @@ const TasksList = ({ tasks }: TasksListProps) => {
   } = useTask();
 
   const filteredTasks = getFilteredTasks(tasks);
-  console.log("🚀 ~ TasksList ~ filteredTasks:", filteredTasks);
-
   return (
     <>
+      <div className="d-block d-lg-flex justify-content-between w-100 align-items-center">
+        <h3>
+          Tareas: <strong>{filteredTasks.length}</strong>
+        </h3>
+        <FilterAndOrderTasks
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          filterPriority={filterPriority}
+          setFilterPriority={setFilterPriority}
+          sortByDate={sortByDate}
+          setSortByDate={setSortByDate}
+        />
+      </div>
       {filteredTasks.length !== 0 ? (
         <>
-          <div className="d-flex justify-content-between w-100 align-items-center">
-            <h3>
-              Tareas: <strong>{filteredTasks.length}</strong>
-            </h3>
-            <FilterAndOrderTasks
-              filterStatus={filterStatus}
-              setFilterStatus={setFilterStatus}
-              filterPriority={filterPriority}
-              setFilterPriority={setFilterPriority}
-              sortByDate={sortByDate}
-              setSortByDate={setSortByDate}
-            />
-          </div>
           <div className="tasks-container">
-            {/* Header */}
-            <div className="task-grid task-header fw-bold border-bottom py-2">
-              <div>#</div>
-              <div>Título</div>
-              <div>Descripción</div>
-              <div>Fecha de vencimiento</div>
-              <div>Estado</div>
-              <div>Prioridad</div>
-              <div>Opciones</div>
+            <div className="task-grid task-header fw-bold border-bottom py-2 d-none d-md-grid text-center">
+              <div className="d-none d-lg-block">#</div>
+              <div className="d-none d-lg-block">Título</div>
+              <div className="d-none d-lg-block">Descripción</div>
+              <div className="d-none d-lg-block">Fecha de vencimiento</div>
+              <div className="d-none d-lg-block">Estado</div>
+              <div className="d-none d-lg-block">Prioridad</div>
+              <div className="d-none d-lg-block">Opciones</div>
             </div>
-
-            {/* Rows */}
             {filteredTasks.map((task, index: number) => (
-              <div key={task.id} className="task-grid border-bottom py-2">
+              <div
+                key={task.id}
+                className="task-grid border-bottom py-2 text-lg-center"
+              >
                 {edit === task.id ? (
                   <EditTask index={index} task={task} />
                 ) : (
@@ -72,9 +70,11 @@ const TasksList = ({ tasks }: TasksListProps) => {
           </div>
         </>
       ) : (
-        <h3 className="border border-secondary text-center rounded px-3 py-2 mt-4">
-          No hay tareas creadas
-        </h3>
+        <>
+          <h3 className="border border-secondary text-center rounded px-3 py-2 mt-4">
+            No hay tareas creadas
+          </h3>
+        </>
       )}
     </>
   );

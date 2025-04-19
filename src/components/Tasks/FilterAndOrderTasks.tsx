@@ -42,7 +42,7 @@ const FilterAndOrderTasks: React.FC<TaskContextType> = ({
       </div>
       <div className="mb-3 mx-1">
         <button
-          className="btn btn-secondary"
+          className="btn btn-secondary w-100 w-lg-auto"
           onClick={() => setSortByDate(!sortByDate)}
         >
           {sortByDate ? "Orden: Fecha ↑" : "Orden: Fecha ↓"}
@@ -50,7 +50,7 @@ const FilterAndOrderTasks: React.FC<TaskContextType> = ({
       </div>
       <div className="mb-3 mx-1">
         <button
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-secondary w-100 w-lg-auto"
           onClick={() => {
             setFilterStatus("all");
             setFilterPriority("all");

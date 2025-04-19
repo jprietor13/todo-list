@@ -8,19 +8,42 @@ export const DetailsTask = ({ index, task }) => {
 
   return (
     <>
-      <div>{index + 1}</div>
-      <div>{task.title}</div>
-      <div>{task.description}</div>
-      <div>{task.expDate}</div>
+      <div>
+        <span>
+          <strong className="d-lg-none">Tarea #: </strong>
+        </span>
+        {index + 1}
+      </div>
+      <div>
+        <span>
+          <strong className="d-lg-none">Título: </strong>
+        </span>
+        {task.title}
+      </div>
+      <div>
+        <span>
+          <strong className="d-lg-none">Descripción: </strong>
+        </span>
+        {task.description}
+      </div>
+      <div>
+        <span>
+          <strong className="d-lg-none">Fecha de vencimiento: </strong>
+        </span>
+        {task.expDate}
+      </div>
       <div
         className={`px-2 py-1 rounded text-white ${
           task.status === "complete" ? "bg-success" : "bg-danger"
         }`}
       >
+        <span>
+          <strong className="d-lg-none">Estado: </strong>
+        </span>
         {task.status === "complete" ? "Completado" : "Pendiente"}
       </div>
       <div
-        className={`px-2 py-1 rounded text-white w-50 ${
+        className={`px-2 py-1 rounded text-white ${
           task.priority === "high"
             ? "bg-danger"
             : task.priority === "medium"
@@ -28,13 +51,16 @@ export const DetailsTask = ({ index, task }) => {
             : "bg-info"
         }`}
       >
+        <span>
+          <strong className="d-lg-none">Prioridad: </strong>
+        </span>
         {task.priority === "high"
           ? "Alta"
           : task.priority === "medium"
           ? "Media"
           : "Baja"}
       </div>
-      <div className="d-flex gap-2 flex-row flex-wrap">
+      <div className="d-flex gap-2 flex-row flex-wrap justify-content-end">
         <div className="d-flex gap-2">
           <button
             className="btn btn-primary btn-sm"
@@ -59,7 +85,10 @@ export const DetailsTask = ({ index, task }) => {
             className="btn btn-danger btn-sm"
             onClick={() => handleDelete(task.id)}
           >
-            <i class="bi bi-trash3-fill" style={{ paddingRight: "2px" }}></i>
+            <i
+              className="bi bi-trash3-fill"
+              style={{ paddingRight: "2px" }}
+            ></i>
             Eliminar
           </button>
         </div>
