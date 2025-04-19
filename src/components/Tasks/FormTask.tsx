@@ -1,20 +1,28 @@
 import { useTask } from "../../context/TaskContext";
+import { useValidateForms } from "../../hooks/useValidateForms";
 
 export const FormTask = () => {
   const { form, handleChange, handleSubmit } = useTask();
+  const { error, setError, onSubmit } = useValidateForms(
+    handleSubmit,
+    form.title
+  );
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={onSubmit}>
       <div className="modal-body">
         <div className="mb-3">
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${error ? "is-invalid" : ""}`}
             placeholder="Nombre"
             name="title"
             value={form.title}
             onChange={handleChange}
           />
+          {error && (
+            <div className="invalid-feedback">El nombre es obligatorio</div>
+          )}
         </div>
         <div className="mb-3">
           <textarea
@@ -68,13 +76,14 @@ export const FormTask = () => {
           type="button"
           className="btn btn-secondary"
           data-bs-dismiss="modal"
+          onClick={() => setError(false)}
         >
           Cancelar
         </button>
         <button
           type="submit"
           className="btn btn-primary"
-          data-bs-dismiss="modal"
+          data-bs-dismiss={form.title && "modal"}
         >
           Guardar
         </button>

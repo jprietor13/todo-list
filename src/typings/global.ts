@@ -39,7 +39,8 @@ export type Action =
 export interface ProjectContextType {
   projects: Project[];
   dispatch: React.Dispatch<any>;
-  refTitle: React.RefObject<HTMLInputElement>;
+  title: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleEdit: (id: number) => void;
   handleDelete: (id: number) => void;

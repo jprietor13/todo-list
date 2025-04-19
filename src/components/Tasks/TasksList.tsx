@@ -11,7 +11,7 @@ type Task = {
 };
 
 interface TasksListProps {
-  tasks?: Task[]; // opcional
+  tasks?: Task[];
 }
 
 const TasksList = ({ tasks }: TasksListProps) => {

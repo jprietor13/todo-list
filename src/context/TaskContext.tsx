@@ -123,7 +123,6 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
   };
 
   const moveTaskToProject = (id: number, projectId: number) => {
-    // Buscar si la tarea está en el contexto de tareas globales
     let taskToMove: Task | undefined = tasks?.find((task) => task.id === id);
 
     if (taskToMove) {
