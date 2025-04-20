@@ -13,9 +13,9 @@ Tambien se le añade un tema (dark/light) en el header para mejor visualizacion 
 ## Screenshots
 
 ![login](./src/images/1.png)
-![login datos incorrectos](./src/images/2.png)
-![login datos del usuario](./src/images/3.png)
-![home](./src/images/4.png)
+![login](./src/images/2.png)
+![login](./src/images/3.png)
+![login](./src/images/4.png)
 
 ## Tecnologias usadas
 
@@ -86,6 +86,16 @@ El estado de los proyectos se guarda en `localStorage`, permitiendo que la infor
 ### 🧪 Pruebas unitarias
 
 Se utiliza **Jest** para las pruebas unitarias. Se testean funciones importantes como el `todoReducer` y los contextos para asegurar que las acciones funcionen correctamente y mantener la estabilidad del código.
+
+en la terminal, se debe correr el comando
+
+```sh
+- npm run jest
+```
+
+de esta manera las pruebas del reducer se ejecutaran y deberian mostrar un resultado como el siguiente
+
+![login](./src/images/5.png)
 
 ### 🎨 UX/UI
 
