@@ -9,13 +9,20 @@ export const todoReducer = (state: State = [], action: Action): State => {
       return state.filter((item) => item.id !== action.payload);
     }
 
-    case "EDIT": {
+    case "EDIT_TASK": {
       const index = state.findIndex(
         (project) => project.id === action.payload.id
       );
       state[index] = action.payload;
       return [...state];
     }
+
+    case "EDIT_PROJECT":
+      return state.map((project) =>
+        project.id === action.payload.id
+          ? { ...project, title: action.payload.title }
+          : project
+      );
 
     case "EDIT_TASK_PROJECT": {
       const { projectId, task } = action.payload;

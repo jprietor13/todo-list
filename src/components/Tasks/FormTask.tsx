@@ -30,7 +30,7 @@ export const FormTask = () => {
         </div>
         <div className="mb-3">
           <strong>
-            <label htmlFor="title" className="form-label">
+            <label htmlFor="description" className="form-label">
               Descripción
             </label>
           </strong>
@@ -44,7 +44,7 @@ export const FormTask = () => {
         </div>
         <div className="mb-3">
           <strong>
-            <label htmlFor="title" className="form-label">
+            <label htmlFor="expdate" className="form-label">
               Fecha de vencimiento
             </label>
           </strong>
@@ -58,7 +58,7 @@ export const FormTask = () => {
         </div>
         <div className="mb-3">
           <strong>
-            <label htmlFor="title" className="form-label">
+            <label htmlFor="status" className="form-label">
               Estado
             </label>
           </strong>
@@ -68,15 +68,13 @@ export const FormTask = () => {
             value={form.status}
             onChange={handleChange}
           >
-            <option value="pending" selected>
-              Pendiente
-            </option>
+            <option value="pending">Pendiente</option>
             <option value="complete">Completado</option>
           </select>
         </div>
         <div className="mb-3">
           <strong>
-            <label htmlFor="title" className="form-label">
+            <label htmlFor="priority" className="form-label">
               Prioridad
             </label>
           </strong>
@@ -86,9 +84,7 @@ export const FormTask = () => {
             value={form.priority}
             onChange={handleChange}
           >
-            <option value="high" selected>
-              Alta
-            </option>
+            <option value="high">Alta</option>
             <option value="medium">Media</option>
             <option value="low">Baja</option>
           </select>

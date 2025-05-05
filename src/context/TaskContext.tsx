@@ -27,8 +27,8 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
     title: "",
     description: "",
     expDate: "",
-    status: "",
-    priority: "",
+    status: "pending",
+    priority: "high",
   });
 
   const { dispatch: dispatchProjects, projects } = useProject();
@@ -64,7 +64,6 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
       id: new Date().getTime(),
       ...form,
     };
-
     dispatch({ type: "CREATE", payload: task });
     resetForm();
   };
@@ -74,7 +73,6 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
       id,
       ...form,
     };
-    console.log(form);
     const project = findProjectByTask(id);
 
     if (project) {
@@ -83,7 +81,7 @@ export const TaskProvider = ({ children }: ProjectProviderProps) => {
         payload: { projectId: project.id, task: updatedTask },
       });
     } else {
-      dispatch({ type: "EDIT", payload: updatedTask });
+      dispatch({ type: "EDIT_TASK", payload: updatedTask });
     }
 
     resetForm();

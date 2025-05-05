@@ -45,6 +45,7 @@ export const ProjectProvider = ({ children }: ProjectProviderProps) => {
     if (!project) return;
 
     setTitle(project.title);
+    dispatch({ type: "EDIT_PROJECT", payload: { id, title } });
     setEdit(id);
   };
 

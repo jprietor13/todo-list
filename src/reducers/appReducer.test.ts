@@ -63,7 +63,7 @@ describe("todoReducer unit tests", () => {
 
   it("should edit a project", () => {
     const action: Action = {
-      type: "EDIT",
+      type: "EDIT_TASK",
       payload: { id: 1, title: "Updated Project 1", tasks: [] },
     };
 

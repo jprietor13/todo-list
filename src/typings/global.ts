@@ -26,7 +26,8 @@ export type State = Project[];
 export type Action =
   | { type: "CREATE"; payload: Project }
   | { type: "DELETE"; payload: number }
-  | { type: "EDIT"; payload: Project }
+  | { type: "EDIT_TASK"; payload: Project }
+  | { type: "EDIT_PROJECT"; payload: Project }
   | { type: "EDIT_TASK_PROJECT"; payload: { projectId: number; task: Task } }
   | {
       type: "DELETE_TASK_PROJECT";
