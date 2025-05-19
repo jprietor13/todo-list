@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import logo from "../images/logo.png";
 
 export const Header = () => {
   const [isDark, setIsDark] = useState(false);
@@ -10,8 +9,7 @@ export const Header = () => {
 
   return (
     <header className="header-container mt-4">
-      <img src={logo} alt="logo" style={{ height: "40px" }} />
-      <h2>TODO-APP</h2>
+      <h2>TODO-LIST</h2>
 
       <button
         className="btn btn-outline-secondary"
