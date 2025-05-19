@@ -1,4 +1,4 @@
-# OmniPro - TodoList
+# TodoList
 
 El objetivo es construir una aplicacion todo-list en la cual se puedan crear, listar, editar y eliminar tareas en una ruta especifica de la aplicacion (/tasks), esas tareas se iran listando de una en una y aparte de realizar las acciones basicas, cuenta con la opcion de "mover a" con el cual las tareas se podran mover a una lista de proyectos que el usuario cree.
 
