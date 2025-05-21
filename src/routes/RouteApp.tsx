@@ -6,7 +6,7 @@ import { Tasks } from "../components/Tasks/Tasks";
 
 const RouteApp = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/todo-list">
       <Header />
       <Navbar />
       <Routes>
